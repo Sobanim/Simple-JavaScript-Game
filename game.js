@@ -18,10 +18,14 @@ $gameTime.addEventListener('input', setGameTime)
 function startGame() {
     score = 0
     setGameTime()
+
     $gameTime.setAttribute('disabled', 'true')
     isGameStarted = true
     $game.style.backgroundColor = 'white'
     $start.classList.add('hide')
+
+    setDifficult()
+    // alert('Your time for game is too long or too slow. Please write correct time from 5 to 20 sec')
 
     let interval = setInterval(function () {
         let time = parseFloat($time.textContent)
@@ -73,7 +77,8 @@ function handleBoxClick(event) {
 function renderBox() {
     $game.innerHTML = ''
     let box = document.createElement('div')
-    let boxSize = getRandom(20, 80)
+    let difficult = setDifficult()
+    let boxSize = getRandom(difficult.from, difficult.to)
     let gameSize = $game.getBoundingClientRect()
     let maxTop = gameSize.height - boxSize
     let maxLeft = gameSize.width - boxSize
@@ -107,13 +112,14 @@ function getRandomColor() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    //
     do{
         do {
             name = prompt('What is your name?', 'Guest')
             if (name === null){
                 alert('Please write YOUR name')
             } else  if (name.length >= 20) {
-                alert('Your name os tooo long. Please write shorter name')
+                alert('Your name os too long. Please write shorter name')
             }else if(name.length <= 2){
                 alert('Your name is too shorter. Please write long name')
             }
@@ -132,15 +138,40 @@ function addDataToTable() {
     let cell1 = row.insertCell(0)
     let cell2 = row.insertCell(1)
     let cell3 = row.insertCell(2)
+    let cell4 = row.insertCell(3)
     cell1.innerHTML = name
     cell2.innerHTML = time
-    cell3.innerHTML = score
+    cell3.innerHTML = document.querySelector('input[name="difficult"]:checked').value
+    cell4.innerHTML = score
+
 
 //    Calculate number tr in table
     let tBody = table.querySelector('tbody')
     let numberLines = tBody.querySelectorAll('tr').length - 1
-    console.log(numberLines)
     if (numberLines === 10){
         table.deleteRow(10)
     }
+}
+
+function setDifficult() {
+    let $difficult = document.querySelector('input[name="difficult"]:checked').value
+    let from, to
+    switch ($difficult) {
+        case 'easy':
+            from = 30
+            to = 80
+            return {from: from, to: to}
+            break
+        case 'normal':
+            from = 17
+            to = 45
+            return {from: from, to: to}
+            break
+        case 'hard':
+            from = 10
+            to = 30
+            return {from: from, to: to}
+            break
+    }
+
 }

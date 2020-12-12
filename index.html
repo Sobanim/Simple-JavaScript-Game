@@ -22,25 +22,46 @@
             <div class="game" id="game"></div>
         </div>
         <div class="app__footer">
+            <div class="difficult">
+                <label for="">Select difficult</label>
+                <div class="difficult__radio">
+                    <input value="easy" type="radio" id="easy" name="difficult" checked>
+                    <label for="easy">Easy</label>
+                    <input value="normal" type="radio" name="difficult" id="normal" >
+                    <label for="normal">Normal</label>
+                    <input value="hard" type="radio" name="difficult" id="hard">
+                    <label for="hard">Hard</label>
+                </div>
+            </div>
             <div class="input">
                 <label for="game-time">Time for game, (sec)</label>
-                <input type="number" id="game-time" min="5" step="1" value="5" max="20">
+<!--                <input type="number" id="game-time" min="5" step="1" value="5" max="20">-->
+                <select name="game-time" id="game-time">
+                    <option value="5">5 sec</option>
+                    <option value="10">10 sec</option>
+                    <option value="15">15 sec</option>
+                    <option value="20">20 sec</option>
+                </select>
             </div>
         </div>
     </div>
+
     <div class="table-wrapper">
         <table>
             <tr>
                 <th>Name</th>
                 <th>Time for game<br> (sec)</th>
+                <th>Difficult</th>
                 <th>Score</th>
             </tr>
         </table>
     </div>
 </div>
 
+<div class="overlay"></div>
+<div class="popup"></div>
 
 
-<script src="index.js"></script>
+<script src="game.js"></script>
 </body>
 </html>
