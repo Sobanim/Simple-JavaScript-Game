@@ -184,13 +184,3 @@ function setDifficult() {
             break
     }
 }
-
-function sendData() {
-    firebase.database().ref('game/').set({
-        name: name,
-        gameDuration: time,
-        difficult: $difficult,
-        score: score,
-        device: gameDevice
-    })
-}

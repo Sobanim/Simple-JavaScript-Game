@@ -44,27 +44,40 @@
                 </select>
             </div>
         </div>
-
-        <div class="global-score-btn">
-            <button>Global Score</button>
-        </div>
     </div>
 
-    <div class="table-wrapper">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Game duration<br></th>
-                <th>Difficult</th>
-                <th>Score</th>
-                <th>Device</th>
-            </tr>
-        </table>
+    <div class="score">
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Game duration<br></th>
+                    <th>Difficult</th>
+                    <th>Score</th>
+                    <th>Device</th>
+                </tr>
+            </table>
+        </div>
+        <div class="global-score-btn">
+            <button class="btn">Global Score</button>
+        </div>
     </div>
 </div>
 
 <div class="overlay"></div>
-<div class="popup"></div>
+<div id="popup" class="global-score">
+    <div class="global-score__body">
+        <div class="global-score__content">
+            <a href="" class="popup__close">X</a>
+            <div class="popup__title">
+                Global Score
+            </div>
+            <div class="popup__text">
+                <table></table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase.js"></script>
