@@ -37,7 +37,7 @@ h1 {
 .table-wrapper {
     font-family: 'Texturina', serif;
     font-size: .8rem;
-    margin-left: 25px;
+    margin-left: 15px;
 }
 
 .table-wrapper table {
@@ -51,7 +51,11 @@ h1 {
 
 .table-wrapper table td, table th {
     border: 1px solid #a3a3a3;
-    padding: 2px;
+    padding: 4px;
+}
+
+.table-wrapper table img{
+    width: 20px;
 }
 
 .app__header {
@@ -70,12 +74,12 @@ h1 {
     padding: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .input {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
     align-items: center;
 }
 
@@ -174,6 +178,21 @@ h1 {
 .difficult{
     font-family: 'Texturina', serif;
     font-size: 0.9rem;
+}
+
+.global-score-btn{
+    display: flex;
+    justify-content: center;
+}
+.global-score-btn button{
+    font-size: 1rem;
+    background-color: darkcyan;
+    color: white;
+    font-family: 'Texturina', serif;
+    border: none;
+    border-radius: 1rem;
+    padding: 15px;
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {

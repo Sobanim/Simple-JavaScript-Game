@@ -5,6 +5,9 @@ let $timeHeader = document.querySelector('#time-header')
 let $resultHeader = document.querySelector('#result-header')
 let $result = document.querySelector('#result')
 let $gameTime = document.querySelector('#game-time')
+let $difficult = null
+let gameDevice
+var database = firebase.database()
 
 let score = 0
 let isGameStarted = false
@@ -113,17 +116,16 @@ function getRandomColor() {
 
 document.addEventListener('DOMContentLoaded', function () {
     //
-    do{
+    do {
         do {
             name = prompt('What is your name?', 'Guest')
-            if (name === null){
+            if (name === null) {
                 alert('Please write YOUR name')
-            } else  if (name.length >= 20) {
+            } else if (name.length >= 20) {
                 alert('Your name os too long. Please write shorter name')
-            }else if(name.length <= 2){
+            } else if (name.length <= 2) {
                 alert('Your name is too shorter. Please write long name')
-            }
-            else{
+            } else {
                 break
             }
         }
@@ -139,22 +141,30 @@ function addDataToTable() {
     let cell2 = row.insertCell(1)
     let cell3 = row.insertCell(2)
     let cell4 = row.insertCell(3)
+    let cell5 = row.insertCell(4)
     cell1.innerHTML = name
-    cell2.innerHTML = time
+    cell2.innerHTML = time + " sec"
     cell3.innerHTML = document.querySelector('input[name="difficult"]:checked').value
     cell4.innerHTML = score
-
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        gameDevice = 'mobile'
+        cell5.innerHTML = '<img src="images/mobile.png">'
+    } else {
+        cell5.innerHTML = '<img src="images/desktop.png">'
+        gameDevice = 'desktop'
+    }
 
 //    Calculate number tr in table
     let tBody = table.querySelector('tbody')
     let numberLines = tBody.querySelectorAll('tr').length - 1
-    if (numberLines === 10){
+    if (numberLines === 10) {
         table.deleteRow(10)
     }
+    sendData()
 }
 
 function setDifficult() {
-    let $difficult = document.querySelector('input[name="difficult"]:checked').value
+    $difficult = document.querySelector('input[name="difficult"]:checked').value
     let from, to
     switch ($difficult) {
         case 'easy':
@@ -173,5 +183,14 @@ function setDifficult() {
             return {from: from, to: to}
             break
     }
+}
 
+function sendData() {
+    firebase.database().ref('game/').set({
+        name: name,
+        gameDuration: time,
+        difficult: $difficult,
+        score: score,
+        device: gameDevice
+    })
 }
