@@ -19,8 +19,6 @@
 
 
 
-//Backend
-
 
 function sendData() {
     firebase.database().ref('game/').set({
@@ -28,6 +26,19 @@ function sendData() {
         gameDuration: time,
         difficult: $difficult,
         score: score,
-        device: gameDevice
+        device: gameDevice,
+        data: getCurrentData()
     })
+}
+
+function getCurrentData() {
+    let today = new Date();
+    let min = today.getMinutes()
+    let hh = today.getHours()
+    let ss = today.getSeconds()
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    today = `${hh}:${min}:${ss} ${dd}.${mm}.${yyyy}`
+    return today
 }

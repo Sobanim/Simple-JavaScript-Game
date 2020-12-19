@@ -160,7 +160,7 @@ function addDataToTable() {
     if (numberLines === 10) {
         table.deleteRow(10)
     }
-    sendData()
+
 }
 
 function setDifficult() {
