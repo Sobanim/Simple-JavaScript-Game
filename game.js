@@ -65,6 +65,7 @@ function endGame() {
     $game.style.backgroundColor = '#ccc'
     hide($timeHeader)
     show($resultHeader)
+    sendData()
 }
 
 function handleBoxClick(event) {
