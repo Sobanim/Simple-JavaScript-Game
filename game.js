@@ -28,7 +28,6 @@ function startGame() {
     $start.classList.add('hide')
 
     setDifficult()
-    // alert('Your time for game is too long or too slow. Please write correct time from 5 to 20 sec')
 
     let interval = setInterval(function () {
         let time = parseFloat($time.textContent)
@@ -146,12 +145,12 @@ function addDataToTable() {
     cell1.innerHTML = name
     cell2.innerHTML = time + " sec"
     cell3.innerHTML = document.querySelector('input[name="difficult"]:checked').value
-    cell4.innerHTML = score
+    cell5.innerHTML = score
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         gameDevice = 'mobile'
-        cell5.innerHTML = '<img src="images/mobile.png">'
+        cell4.innerHTML = '<img src="images/mobile.png">'
     } else {
-        cell5.innerHTML = '<img src="images/desktop.png">'
+        cell4.innerHTML = '<img src="images/desktop.png">'
         gameDevice = 'desktop'
     }
 

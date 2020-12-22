@@ -53,30 +53,41 @@
                     <th>Name</th>
                     <th>Game duration<br></th>
                     <th>Difficult</th>
-                    <th>Score</th>
                     <th>Device</th>
+                    <th>Score</th>
                 </tr>
             </table>
         </div>
         <div class="global-score-btn">
-            <button class="btn" onclick="sendData()">Global Score</button>
+            <button class="btn" onclick="test()">Global Score</button>
         </div>
     </div>
 </div>
 
-<!--<div id="popup" class="global-score">-->
-<!--    <div class="global-score__body">-->
-<!--        <div class="global-score__content">-->
-<!--            <a href="" class="popup__close">X</a>-->
-<!--            <div class="popup__title">-->
-<!--                Global Score-->
-<!--            </div>-->
-<!--            <div class="popup__text">-->
-<!--                <table></table>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div id="popup" class="global-score">
+    <div class="global-score__body">
+        <div class="global-score__content">
+            <a class="popup__close">X</a>
+            <div class="popup__title">
+                Global Score
+            </div>
+            <div class="popup__text">
+                <table>
+                    <tr>
+                        <th>Position</th>
+                        <th>Name</th>
+                        <th>Game duration</th>
+                        <th>Difficult</th>
+                        <th>Data</th>
+                        <th>Device</th>
+                        <th>Score</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="overlay"></div>-->
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase.js"></script>
