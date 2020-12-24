@@ -1,4 +1,4 @@
-let gameID = 0
+let gameID = getGameId()
 
 function getGameId() {
     firebase.database().ref('/systemInfo').once('value', function (snapshot) {
@@ -13,7 +13,7 @@ function getGameId() {
 
 function sendData() {
     getGameId()
-    firebase.database().ref('games/' + gameID).set({
+    firebase.database().ref('games/game' + gameID).set({
         name: name,
         gameDuration: time,
         difficult: $difficult,
@@ -40,25 +40,33 @@ function getCurrentData() {
 }
 
 function getData() {
-    let database = firebase.database();
-
-    let gamesRef = firebase.database().ref('games').orderByChild('score').once('value').then((snapshot) => {
-        console.log(snapshot.val())
-
-    })
-    // gamesRef.orderByChild('score').limitToFirst(10).once('value', function (snapshot) { // orderByChild - sort by somethings
-    //     let gamesNumber = snapshot.val()
-    //     console.log(gamesRef)
 
 
-
-
-        // let ln = Object.keys(gamesNumber).length
-        // for (let i = 0; i <= 10; i++){
-        //     i = i.toString()
-        //     console.log(gamesNumber[i])
-        // }
+    // let gamesRef = firebase.database().ref('games').orderByChild('score').on('value', (snapshot) => {
+    //     console.log(snapshot.val())
     // })
+    let query = firebase.database().ref('games').orderByChild('score').limitToLast(100)
+    query.once('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            console.log(childKey)
+            console.log(childData);
+    })
+
+
+    // let gamesRef = firebase.database().ref('games').orderByChild('score').once('value').then((snapshot) => {
+    //     console.log(snapshot.val())
+    //
+    // })
+    // let game = firebase.database().ref('games').orderByChild('score').limitToLast(7).once('value', function (snapshot) {
+    //
+    //     let games = snapshot.val()
+    //     console.log(games)
+    // })
+
+
+})
 }
 
 
