@@ -35,7 +35,7 @@ function getCurrentDate() {
     let dd = String(today.getDate()).padStart(2, '0')
     let mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
     let yyyy = today.getFullYear();
-    today = `${hh}:${min}:${ss} ${dd}.${mm}.${yyyy}`
+    today = `${hh}:${min}:${ss} <br> ${dd}.${mm}.${yyyy}`
     return today
 }
 let i = 0
@@ -52,18 +52,20 @@ function getData() {
 
             })
             let gamesRev = games.reverse()
-            console.log(gamesRev[1].score)
-        })
-    // let gTable = document.querySelector('.global')
-    // let row = gTable.insertRow(1)
-    // row.insertCell(0).innerHTML = i + 1
-    // row.insertCell(1).innerHTML = gamesRev
-    // row.insertCell(2)
-    // row.insertCell(3)
-    // row.insertCell(4)
-    // row.insertCell(5)
-    // row.insertCell(6)
+            let gTable = document.querySelector('.global')
+            for (let j = 0; j <= gamesRev.length - 1; j++){
+                let row = gTable.insertRow(1)
+                row.insertCell(0).innerHTML = gamesRev.length - 1 - j
+                row.insertCell(1).innerHTML = gamesRev[gamesRev.length - 1 - j].name
+                row.insertCell(2).innerHTML = gamesRev[gamesRev.length - 1 - j].gameDuration
+                row.insertCell(3).innerHTML = gamesRev[gamesRev.length - 1 - j].difficult
+                row.insertCell(4).innerHTML = gamesRev[gamesRev.length - 1 - j].data
+                row.insertCell(5).innerHTML = gamesRev[gamesRev.length - 1 - j].device
+                row.insertCell(6).innerHTML = gamesRev[gamesRev.length - 1 - j].score
+            }
+            console.log(gamesRev[0].score)
 
+        })
 }
 
 
@@ -71,6 +73,8 @@ function getData() {
 
 document.querySelector('.global-score-btn button').onclick = function () {
     document.querySelector('.global-score').classList.add('open')
+    getData()
+
 }
 document.querySelector('.popup__close').onclick = function () {
     document.querySelector('.global-score').classList.remove('open')
