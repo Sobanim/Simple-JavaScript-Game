@@ -19,7 +19,7 @@ function sendData() {
         difficult: $difficult,
         score: score,
         device: gameDevice,
-        data: getCurrentData()
+        data: getCurrentDate()
     })
     firebase.database().ref('/systemInfo').set({
         gameID: gameID + 1
@@ -27,7 +27,7 @@ function sendData() {
 
 }
 
-function getCurrentData() {
+function getCurrentDate() {
     let today = new Date();
     let ss = String(today.getSeconds()).padStart(2, '0')
     let min = String(today.getMinutes()).padStart(2, '0')
@@ -38,35 +38,32 @@ function getCurrentData() {
     today = `${hh}:${min}:${ss} ${dd}.${mm}.${yyyy}`
     return today
 }
-
+let i = 0
 function getData() {
+    let games = []
 
+        let query = firebase.database().ref('games').orderByChild('score').limitToLast(100)
+        query.once('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                let childKey = childSnapshot.key
+                let childData = childSnapshot.val()
+                games[i] = childData
+                i = i + 1
 
-    // let gamesRef = firebase.database().ref('games').orderByChild('score').on('value', (snapshot) => {
-    //     console.log(snapshot.val())
-    // })
-    let query = firebase.database().ref('games').orderByChild('score').limitToLast(100)
-    query.once('value', function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            var childKey = childSnapshot.key;
-            var childData = childSnapshot.val();
-            console.log(childKey)
-            console.log(childData);
-    })
+            })
+            let gamesRev = games.reverse()
+            console.log(gamesRev[1].score)
+        })
+    // let gTable = document.querySelector('.global')
+    // let row = gTable.insertRow(1)
+    // row.insertCell(0).innerHTML = i + 1
+    // row.insertCell(1).innerHTML = gamesRev
+    // row.insertCell(2)
+    // row.insertCell(3)
+    // row.insertCell(4)
+    // row.insertCell(5)
+    // row.insertCell(6)
 
-
-    // let gamesRef = firebase.database().ref('games').orderByChild('score').once('value').then((snapshot) => {
-    //     console.log(snapshot.val())
-    //
-    // })
-    // let game = firebase.database().ref('games').orderByChild('score').limitToLast(7).once('value', function (snapshot) {
-    //
-    //     let games = snapshot.val()
-    //     console.log(games)
-    // })
-
-
-})
 }
 
 
