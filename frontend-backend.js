@@ -41,8 +41,11 @@ function getCurrentDate() {
 let i = 0
 function getData() {
     let games = []
-
-        let query = firebase.database().ref('games').orderByChild('score').limitToLast(100)
+    let gTable = document.querySelector('.global')
+    while (gTable.rows.length > 1){
+        gTable.deleteRow(1)
+    }
+        let query = firebase.database().ref('games').orderByChild('score')
         query.once('value', function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
                 let childKey = childSnapshot.key
@@ -52,22 +55,28 @@ function getData() {
 
             })
             let gamesRev = games.reverse()
-            let gTable = document.querySelector('.global')
+
             for (let j = 0; j <= gamesRev.length - 1; j++){
                 let row = gTable.insertRow(1)
-                row.insertCell(0).innerHTML = gamesRev.length - 1 - j
+                row.insertCell(0).innerHTML = gamesRev.length - j
                 row.insertCell(1).innerHTML = gamesRev[gamesRev.length - 1 - j].name
                 row.insertCell(2).innerHTML = gamesRev[gamesRev.length - 1 - j].gameDuration
                 row.insertCell(3).innerHTML = gamesRev[gamesRev.length - 1 - j].difficult
                 row.insertCell(4).innerHTML = gamesRev[gamesRev.length - 1 - j].data
-                row.insertCell(5).innerHTML = gamesRev[gamesRev.length - 1 - j].device
+                if (gamesRev[gamesRev.length - 1 - j].device === 'desktop'){
+                    row.insertCell(5).innerHTML = '<img src="images/desktop.png">'
+                } else if(gamesRev[gamesRev.length - 1 - j].device === 'mobile'){
+                    row.insertCell(5).innerHTML = '<img src="images/mobile.png">'
+                }
+                else{
+                    row.insertCell(5).innerHTML = '?-Unknown device-?'
+                }
                 row.insertCell(6).innerHTML = gamesRev[gamesRev.length - 1 - j].score
             }
-            console.log(gamesRev[0].score)
+            i = 0
 
         })
 }
-
 
 // Front-end
 
