@@ -211,7 +211,8 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: fit-content;
+    min-height: 100%;
+    max-height: fit-content;
     background-color: rgba(172, 172, 172, 0.75);
     opacity: 0;
     visibility: hidden;
