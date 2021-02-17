@@ -88,6 +88,4 @@ document.querySelector('.global-score-btn button').onclick = function () {
 document.querySelector('.popup__close').onclick = function () {
     document.querySelector('.global-score').classList.remove('open')
 }
-// document.querySelector('.overlay').onclick = function () {
-//     alert('click')
-// }
+

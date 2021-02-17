@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div class="wrapper hide">
     <div class="app">
         <div class="app__header">
             <h1 id="time-header">Time for game: <span id="time">5.0</span></h1>
@@ -61,6 +61,8 @@
     </div>
 </div>
 
+<!-- Popups -->
+
 <div id="popup" class="global-score">
     <div class="global-score__body">
         <div class="global-score__content">
@@ -84,7 +86,20 @@
         </div>
     </div>
 </div>
-<!--<div class="overlay"></div>-->
+
+<div class="login">
+    <div class="login-content">
+        <label>
+            <b>Please, enter your name or nickname:</b>
+        </label>
+        <input type="text">
+
+        <button>
+            Okey
+        </button>
+    </div>
+
+</div>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase.js"></script>

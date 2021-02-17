@@ -116,22 +116,22 @@ function getRandomColor() {
 
 document.addEventListener('DOMContentLoaded', function () {
     //
-    do {
-        do {
-            name = prompt('What is your name?', 'Guest')
-            if (name === null) {
-                alert('Please write YOUR name')
-            } else if (name.length >= 20) {
-                alert('Your name os too long. Please write shorter name')
-            } else if (name.length <= 2) {
-                alert('Your name is too shorter. Please write long name')
-            } else {
-                break
-            }
-        }
-        while (name === null)
-    }
-    while (name.length >= 20 || name.length <= 2)
+    // do {
+    //     do {
+    //         name = prompt('What is your name?', 'Guest')
+    //         if (name === null) {
+    //             alert('Please write YOUR name')
+    //         } else if (name.length >= 20) {
+    //             alert('Your name os too long. Please write shorter name')
+    //         } else if (name.length <= 2) {
+    //             alert('Your name is too shorter. Please write long name')
+    //         } else {
+    //             break
+    //         }
+    //     }
+    //     while (name === null)
+    // }
+    // while (name.length >= 20 || name.length <= 2)
 })
 
 function addDataToTable() {
