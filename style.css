@@ -263,7 +263,7 @@ h1 {
 }
 
 .login{
-    width: 350px;
+    width: 360px;
     height: 150px;
     background-color: white;
     display: flex;
@@ -282,7 +282,6 @@ h1 {
 }
 
 .login-content input{
-    margin-bottom: 1rem;
     font-size: 1rem;
 }
 
@@ -299,8 +298,17 @@ h1 {
     transition: 0.2s;
 }
 .login-content button:hover {
-    background-color: #2d7d2d;
+    background-color: #268926;
     transition: 0.2s;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, .2);
+    transform: translateY(-1px);
+}
+
+#error-login{
+    font-size: 0.8rem;
+    color: red;
+    margin: 0.2rem 0 0.5rem 0;
+    height: 15px;
 }
 
 .unvisible{

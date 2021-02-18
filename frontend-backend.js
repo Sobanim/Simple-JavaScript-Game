@@ -14,7 +14,7 @@ function getGameId() {
 function sendData() {
     getGameId()
     firebase.database().ref('games/game' + gameID).set({
-        name: name,
+        name: nickname,
         gameDuration: time,
         difficult: $difficult,
         score: score,
@@ -24,7 +24,6 @@ function sendData() {
     firebase.database().ref('/systemInfo').set({
         gameID: gameID + 1
     })
-
 }
 
 function getCurrentDate() {
@@ -88,4 +87,16 @@ document.querySelector('.global-score-btn button').onclick = function () {
 document.querySelector('.popup__close').onclick = function () {
     document.querySelector('.global-score').classList.remove('open')
 }
-
+document.addEventListener('keyup', event =>{
+    let nickname = document.querySelector('#nick').value
+    let errorMsg = document.querySelector('#error-login')
+    if (nickname === ''){
+        errorMsg.innerHTML = 'You didn\'t write your nickname'
+    } else if(nickname.length >= 20){
+        errorMsg.innerHTML = 'Your nickname is too long.'
+    } else if (nickname.length <= 2) {
+        errorMsg.innerHTML = 'Your name is too shorter.'
+    } else {
+        errorMsg.innerHTML = ''
+    }
+})

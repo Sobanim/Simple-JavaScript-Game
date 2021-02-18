@@ -11,7 +11,7 @@ var database = firebase.database()
 
 let score = 0
 let isGameStarted = false
-let name = null
+let nickname = null
 let time = ''
 
 $start.addEventListener('click', startGame)
@@ -115,24 +115,24 @@ function getRandomColor() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    //
-    // do {
-    //     do {
-    //         name = prompt('What is your name?', 'Guest')
-    //         if (name === null) {
-    //             alert('Please write YOUR name')
-    //         } else if (name.length >= 20) {
-    //             alert('Your name os too long. Please write shorter name')
-    //         } else if (name.length <= 2) {
-    //             alert('Your name is too shorter. Please write long name')
-    //         } else {
-    //             break
-    //         }
-    //     }
-    //     while (name === null)
-    // }
-    // while (name.length >= 20 || name.length <= 2)
 })
+
+document.querySelector('#submit').onclick = setNickname ()
+
+function setNickname() {
+    nickname = document.querySelector('#nick').value
+    let errorMsg = document.querySelector('#error-login')
+    if (nickname === ''){
+        errorMsg.innerHTML = 'You didn\'t write your nickname'
+    } else if(nickname.length >= 20){
+        errorMsg.innerHTML = 'Your nickname is too long.'
+    } else if (nickname.length <= 2) {
+        errorMsg.innerHTML = 'Your name is too shorter.'
+    } else {
+        document.querySelector('.login').classList.add('hide')
+        document.querySelector('.wrapper').classList.remove('hide')
+    }
+}
 
 function addDataToTable() {
     let table = document.querySelector('table')
@@ -142,7 +142,7 @@ function addDataToTable() {
     let cell3 = row.insertCell(2)
     let cell4 = row.insertCell(3)
     let cell5 = row.insertCell(4)
-    cell1.innerHTML = name
+    cell1.innerHTML = nickname
     cell2.innerHTML = time + " sec"
     cell3.innerHTML = document.querySelector('input[name="difficult"]:checked').value
     cell5.innerHTML = score
