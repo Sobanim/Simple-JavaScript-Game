@@ -119,6 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.querySelector('#submit').onclick = setNickname ()
 
+document.querySelector('#nick').addEventListener('keyup', function (event) {
+    if (event.keyCode === 13){
+        setNickname()
+    }
+})
+
 function setNickname() {
     nickname = document.querySelector('#nick').value
     let errorMsg = document.querySelector('#error-login')
