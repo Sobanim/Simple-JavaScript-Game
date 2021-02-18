@@ -117,7 +117,9 @@ function getRandomColor() {
 document.addEventListener('DOMContentLoaded', function () {
 })
 
-document.querySelector('#submit').onclick = setNickname ()
+document.querySelector('#submit').onclick = function(){
+    setNickname()
+}
 
 document.querySelector('#nick').addEventListener('keyup', function (event) {
     if (event.keyCode === 13){
